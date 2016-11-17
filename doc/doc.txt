@@ -1,0 +1,45 @@
+
+   INPUT
+---------------------------------------
+ []   []   []   []   []   []   []   []    <- Layer 0: Each node: |IN| = |INPUT|, |OUT| = 2^(ND-1) = 8
+                   
+ []   []   []   [] | []   []   []   []    <- Layer 1: Each node: |IN| = 2^(ND-1) = 8, |OUT| = 2^(ND-2) = 4
+                   |                      NETWORK
+ []   [] | []   [] | []   [] | []   []    <- Layer 2: Each node: |IN| = 2^(ND-2) = 4, |OUT| = 2^(ND-3) = 2
+         |         |         |    
+ [] | [] | [] | [] | [] | [] | [] | []    <- Layer 3: Each node: |IN| = 2^(ND-3) = 2, |OUT| = 2^(ND-4) = 1
+--------------------------------------
+   OUTPUT
+ 
+`Each '[]' represents one node. ND = "Network depth" = "Layer count"`
+
+Node
+----
+
+A node has K inputs and one output, which gets calculated depending on the K input and K weights.
+
+IN:  [in1], [in1], [in2], [in3], ... , [inK]
+OUT: (weight1 * in1 + weigth2 * in3 + ... + weightK * inK)/K  # -1 <= weightK <= 1
+
+Layer
+-----
+
+Each layer consists of N = 2^(ND-1) nodes.
+In the top layer, all N nodes are connected to all inputs.
+In the second layer, the first N/2 nodes of the nodes are connected to the first N/2 nodes of the top layer. The second half to the second half respectively.
+In the third layer, the first N/4 nodes of the nodes are connected to the first N/4 nodes of the second layer. The second 1/4 to the second 1/4. Et cetera.
+On the final layer each node has two inputs and one output.
+In general node has 2^(ND-K) inputs (K representing how deep the network is in, starting at 1 for the top layer). This results in ND * 2^(ND-1) * (2^0 + 2^1 + ... + 2^(ND-1)) = ND * 2^ND * (2^ND -1) weights overall (ND layers with 2^ND nodes with 2^(ND-K) inputs/weights).
+
+Network
+-------
+
+The whole network consists of ND layers, with an arbitrary amount of inputs and K outputs.
+
+Training
+--------
+
+The network gets training data which will be evaluated by the network.
+Then either the network gets feedback on how good the result was and adjusts the weights of each node. Or the network's result gets evaluated, gets compared to similar runs of the same network and either killed or kept for the next generation to be (combined with other good results and) randomly adjusted and tested again.
+Whether to use the feedback or the evolutionary training system depends on the application.
+
