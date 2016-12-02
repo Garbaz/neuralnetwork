@@ -325,17 +325,17 @@ void evalNode(Node *n, double (*f)(double *, double *, const unsigned long))
 
 void dumpNode(Node *n)
 {
-	printf("| +-Node {0x%16lx}: INPUT_SIZE=%lu; input*=0x%lx; weight*=0x%lx; result=%.4g\n", n, n->INPUT_SIZE, n->input, n->weight, *(n->result));
+	printf("| +-Node {0x%16lx}: INPUT_SIZE=%lu; input*=0x%lx; weight*=0x%lx; result=%.6g\n", n, n->INPUT_SIZE, n->input, n->weight, *(n->result));
 	printf("| |                          input=[", n);
 	for(unsigned long i = 0; i < n->INPUT_SIZE; i++)
 	{
-		printf("%.4g, ", n->input[i]);
+		printf("%.6g, ", n->input[i]);
 	}
 	printf("]\n");
 	printf("| |                          weight=[", n);
 	for(unsigned long i = 0; i < n->INPUT_SIZE; i++)
 	{
-		printf("%.4g, ",n->weight[i]);
+		printf("%.6g, ",n->weight[i]);
 	}
 	printf("]\n");
 }
@@ -365,7 +365,7 @@ void dumpNetworkResult(Network *w)
 	printf("[");
 	for(unsigned long i = 0; i < w->layer[w->NETWORK_DEPTH-1].NODE_SIZE; i++)
 	{
-		printf("%.4g, ", w->layer[w->NETWORK_DEPTH-1].result[i]);
+		printf("%.6g, ", w->layer[w->NETWORK_DEPTH-1].result[i]);
 	}
 	printf("]\n");
 }
