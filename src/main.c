@@ -6,13 +6,13 @@
 #include "neuralnetwork.h"
 #include "utilities.h"
 
-#define NET_DEPTH 10
-#define NETWORKS 8
-#define VARIATION 0.5
+#define NET_DEPTH 8
+#define NETWORKS 16
+#define VARIATION 1.0
 #define INPUTDATA_SIZE 2
 #define DATASET_SIZE 100
 #define EXPOUT_SIZE 1
-#define RUNS 100
+#define RUNS 10000
 
 double inputdata[DATASET_SIZE][INPUTDATA_SIZE];
 double expout[DATASET_SIZE][EXPOUT_SIZE];
@@ -43,7 +43,7 @@ int main(int argc, char ** argv)
 	{
 		inputdata[i][0] = rand() % 16;
 		inputdata[i][1] = rand() % 16;
-		expout[i][0] = inputdata[i][0] + inputdata[i][1];
+		expout[i][0] = inputdata[i][0] * inputdata[i][1];
 	}
 
 	for(unsigned long i = 0; i < NETWORKS ;i++)
@@ -87,7 +87,7 @@ int main(int argc, char ** argv)
 			bestNet->layer[0].node[k].input = inputdata[j];
 		}
 		runNetwork(bestNet);
-		printf("%.4g + %.4g = %.4g (EXP: %.4g, DELTA: %.4g)\n", inputdata[j][0], inputdata[j][1], bestnet_output[0], expout[j][0], fabs(expout[j][0] - bestnet_output[0]));
+		printf("%.4g * %.4g = %.4g (EXP: %.4g, DELTA: %.4g)\n", inputdata[j][0], inputdata[j][1], bestnet_output[0], expout[j][0], fabs(expout[j][0] - bestnet_output[0]));
 	}
 	for(unsigned long i = 0; i < NETWORKS; i++)
 	{
