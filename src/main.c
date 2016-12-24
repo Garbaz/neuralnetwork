@@ -12,7 +12,11 @@
 #define INPUTDATA_SIZE 2
 #define DATASET_SIZE 100
 #define EXPOUT_SIZE 1
+<<<<<<< HEAD
 #define RUNS 10000
+=======
+#define RUNS 50
+>>>>>>> 0b2ccf348faf23282da4962943484b56d41c94f7
 
 double inputdata[DATASET_SIZE][INPUTDATA_SIZE];
 double expout[DATASET_SIZE][EXPOUT_SIZE];
@@ -77,7 +81,7 @@ int main(int argc, char ** argv)
 		{
 			cloneNetwork(bestNet, net[tmpTopDeltaIndex]);
 			bestDelta = tmpTopDelta;
-			printf("GEN(%lu): delta = %.4g\n", i, bestDelta);
+			printf("GEN(%lu): delta = %.6g\n", i, bestDelta);
 		}
 	}
 	for(unsigned long j = 0; j < DATASET_SIZE; j++)
@@ -87,7 +91,11 @@ int main(int argc, char ** argv)
 			bestNet->layer[0].node[k].input = inputdata[j];
 		}
 		runNetwork(bestNet);
+<<<<<<< HEAD
 		printf("%.4g * %.4g = %.4g (EXP: %.4g, DELTA: %.4g)\n", inputdata[j][0], inputdata[j][1], bestnet_output[0], expout[j][0], fabs(expout[j][0] - bestnet_output[0]));
+=======
+		printf("%.6g + %.6g = %.6g (EXP: %.6g, DELTA: %.6g)\n", inputdata[j][0], inputdata[j][1], bestnet_output[0], expout[j][0], fabs(expout[j][0] - bestnet_output[0]));
+>>>>>>> 0b2ccf348faf23282da4962943484b56d41c94f7
 	}
 	for(unsigned long i = 0; i < NETWORKS; i++)
 	{
