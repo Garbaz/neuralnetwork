@@ -58,7 +58,7 @@ This compiles into only a few assembly instructions (Which get executed only onc
 unsigned long tmpBenchTicks;
 #define BENCH(cmd) tmpBenchTicks=clock();cmd;tmpBenchTicks=clock()-tmpBenchTicks;fprintf(stderr, "BENCH: '"#cmd"' took %lu ticks. That's %.4g secs.\n", tmpBenchTicks, ((double)tmpBenchTicks)/((double)CLOCKS_PER_SEC));
 #define BENCH_START tmpBenchTicks=clock();
-#define BENCH_END(text) tmpBenchTicks=clock()-tmpBenchTicks;fprintf(stderr, "BENCH: \""#text"\" took %lu ticks. That'S %.4g secs.\n", tmpBenchTicks, ((double)tmpBenchTicks)/((double)CLOCKS_PER_SEC));
+#define BENCH_END(text) tmpBenchTicks=clock()-tmpBenchTicks;fprintf(stderr, "BENCH: \""#text"\" took %lu ticks. That's %.4g secs.\n", tmpBenchTicks, ((double)tmpBenchTicks)/((double)CLOCKS_PER_SEC));
 
 /**
 Generates a random double between limInf and limSup.
