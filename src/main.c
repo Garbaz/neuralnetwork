@@ -13,7 +13,7 @@
 #define DATASET_SIZE 100
 #define EXPOUT_SIZE 1
 
-#define RUNS 10000
+#define RUNS 50
 
 double inputdata[DATASET_SIZE][INPUTDATA_SIZE];
 double expout[DATASET_SIZE][EXPOUT_SIZE];
